@@ -1,0 +1,34 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model APICapstone.Models.PuppyRecipe.FavoritesViewModel
+<link rel="stylesheet" href="~/css/StyleSheet.css" type="text/css" />
+
+<div class="puppysearch">
+
+    <h2>FAVORITES</h2>
+    <br />
+
+    @{
+        foreach (var result in Model.Favorites)
+        {
+        <div id="recipe">
+
+            <h3><a href="@result.href">@result.title</a></h3>
+
+            <img src="@result.thumbnail" />
+
+            <p>Ingredients: @result.ingredients</p>
+
+            <a class="text-danger" asp-controller="PuppyRecipe" asp-action="RemoveItem" asp-route-id ="@result.ID" asp-route-userid ="@Model.LoggedInUser" id="remove">REMOVE ITEM</a>
+            <a  asp-controller="PuppyRecipe" asp-action="RecipeSearch" id="add">ADD MORE ITEMS</a>
+
+        </div>
+            <br />
+
+        }
+    }
+
+</div>

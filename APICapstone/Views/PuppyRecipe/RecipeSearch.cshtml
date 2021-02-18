@@ -1,0 +1,27 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model APICapstone.Models.PuppyRecipe.RecipeSearchViewModel
+<link rel="stylesheet" href="~/css/StyleSheet.css" type="text/css" />
+
+<div class="puppysearch">
+
+    <div class="alert alert-primary" role="alert">
+        Please use the search bar below to search recipes by ingredients! If searching by multiple ingredients, please separate by comma. 
+    </div>
+
+
+    <br />
+
+    <form asp-controller="PuppyRecipe" asp-action="RecipeResults">
+        <p>
+            Recipe Search: <input type="text" name="SearchString" placeholder="Enter keywords here!" />
+            <input type="submit" value="Filter" />
+        </p>
+    </form>
+
+
+</div>

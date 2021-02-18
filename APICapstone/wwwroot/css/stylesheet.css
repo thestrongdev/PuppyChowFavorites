@@ -1,0 +1,39 @@
+﻿#welcome {
+    background-color: lightgrey;
+    border-radius: 10px;
+    border: 5px solid;
+    border-color: cornflowerblue;
+    text-align: center;
+    margin: auto;
+    width: 50%;
+    align-content: center;
+}
+
+.puppysearch {
+    background-color: lightgrey;
+    border-radius: 10px;
+    border: 5px solid;
+    border-color: cornflowerblue;
+    text-align: center;
+    margin: auto;
+    width: 700px;
+    position: absolute;
+    right: 0px;
+    padding: 5px;
+}
+
+#recipe {
+    width: 500px;
+    background-color: lightblue;
+    border-radius: 5px;
+    border: 2px solid black;
+    align-content: center;
+    padding: 5px;
+    margin: auto;
+}
+
+#save {
+    background-color: lightgrey;
+    padding: 5px;
+    font-weight: bold;
+}
