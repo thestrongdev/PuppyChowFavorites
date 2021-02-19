@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace APICapstone.Controllers
@@ -40,15 +41,80 @@ namespace APICapstone.Controllers
             return View();
         }
 
-        public IActionResult AddToFavorite()
+        public IActionResult RecipeNotFound()
         {
-            //ADD and SAVE TO DATABASE 
-            //get user id as well
-            
             return View();
         }
 
-        public IActionResult RemoveItem(int id, string userid)
+        public async Task<IActionResult> Favorites()
+        {
+            var viewModel = new FavoritesViewModel();
+
+            var user = await _userManager.GetUserAsync(User);
+
+            var favorites = _applicationDbContext.Favorites
+                .Where(favorite => favorite.Id == user.Id).ToList();
+
+            viewModel.Favorites = favorites.Select(faveDAL => new Recipe
+            {
+                ID = faveDAL.FaveId,
+                title = faveDAL.Title,
+                ingredients = faveDAL.Ingredients,
+                href = faveDAL.href
+
+            }).ToList();
+
+            return View(viewModel);
+        }
+
+        public async Task<IActionResult> AddToFavorite(string search, int index) 
+        {
+            var response = await _recipePuppyClient.GetRecipes(search);
+
+            var recipeModel = new RecipeResultsViewModel();
+
+            recipeModel.SearchResults = response.results.
+                Select(
+                result => new Recipe()
+                {
+                    title = result.title,
+                    ingredients = result.ingredients,
+                    thumbnail = result.thumbnail,
+                    href = result.href
+
+                }).ToList();
+
+            var faveDAL = new FavoritesDAL();
+            faveDAL.Title = recipeModel.SearchResults[index].title;
+            faveDAL.Ingredients = recipeModel.SearchResults[index].ingredients;
+            faveDAL.href = recipeModel.SearchResults[index].href;
+
+            var user = await _userManager.GetUserAsync(User);
+            faveDAL.Id = user.Id;
+
+            _applicationDbContext.Favorites.Add(faveDAL);
+            _applicationDbContext.SaveChanges();            
+
+            
+            //CREATE USERs LIST TO SHOW ON THEIR VIEW
+            var viewModel = new FavoritesViewModel();
+
+            var favorites = _applicationDbContext.Favorites
+                .Where(favorite => favorite.Id == user.Id).ToList();
+
+            viewModel.Favorites = favorites.Select(faveDAL => new Recipe
+            {
+                ID = faveDAL.FaveId,
+                title = faveDAL.Title,
+                ingredients = faveDAL.Ingredients,
+                href = faveDAL.href
+
+            }).ToList();
+
+            return View("Favorites", viewModel);
+        }
+
+        public async Task<IActionResult> RemoveItem(int id)
         {
             FavoritesDAL FaveDAL = _applicationDbContext.Favorites
                 .Where(favorite => favorite.FaveId == id).FirstOrDefault();
@@ -56,10 +122,12 @@ namespace APICapstone.Controllers
             _applicationDbContext.Favorites.Remove(FaveDAL);
             _applicationDbContext.SaveChanges();
 
+            var user = await _userManager.GetUserAsync(User);
+
             //new list of tasks to display w/USER ID!!
             var viewModel = new FavoritesViewModel();
             var favorites = _applicationDbContext.Favorites
-                .Where(favorite => favorite.Id == userid).ToList();
+                .Where(favorite => favorite.Id == user.Id).ToList();
 
             viewModel.Favorites = favorites.Select(faveDAL => new Recipe
             {
@@ -81,6 +149,14 @@ namespace APICapstone.Controllers
             }
 
             var response = await _recipePuppyClient.GetRecipes(SearchString);
+
+            //if(response.results.Length==0)
+            //{
+            //    var model = new RecipeNotFoundViewModel();
+            //    model.Ingredients = SearchString;
+            //    return View("RecipeNotFound", model);
+            //}
+
 
             var viewModel = new RecipeResultsViewModel();
 

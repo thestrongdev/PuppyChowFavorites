@@ -22,7 +22,7 @@
 
             <p>Ingredients: @result.ingredients</p>
 
-            <a class="text-danger" asp-controller="PuppyRecipe" asp-action="RemoveItem" asp-route-id ="@result.ID" asp-route-userid ="@Model.LoggedInUser" id="remove">REMOVE ITEM</a>
+            <a class="text-danger" asp-controller="PuppyRecipe" asp-action="RemoveItem" asp-route-id ="@result.ID"  id="remove">REMOVE ITEM</a>
             <a  asp-controller="PuppyRecipe" asp-action="RecipeSearch" id="add">ADD MORE ITEMS</a>
 
         </div>

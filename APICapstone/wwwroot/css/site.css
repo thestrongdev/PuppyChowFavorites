@@ -61,10 +61,10 @@ html {
 body {
     /* Margin bottom by footer height */
     margin-bottom: 60px;
-    background-image: url(https://cdn.wallpapersafari.com/12/37/h4nNTz.jpg);
+    background-image: url(https://wallsdesk.com/wp-content/uploads/2016/07/cool-Funny-Dogs-backgrounds.jpg);
 }
 .footer {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   width: 100%;
   white-space: nowrap;

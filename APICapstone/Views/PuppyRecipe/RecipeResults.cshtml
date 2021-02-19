@@ -17,6 +17,8 @@
     <br />
 
     @{
+        int indexTracker = 0;
+
         foreach (var result in Model.SearchResults)
         {
             <div id="recipe">
@@ -27,9 +29,10 @@
 
                 <p>Ingredients: @result.ingredients</p>
 
-                <a asp-controller="PuppyRecipe" asp-action="AddToFavorite" id="save">SAVE TO FAVORITES</a>
+                <a asp-controller="PuppyRecipe" asp-action="AddToFavorite" asp-route-search="@Model.SearchKeyword" asp-route-index="@indexTracker" id="save">SAVE TO FAVORITES</a>
             </div>
             <br />
+            indexTracker += 1;
 
         }
     }
