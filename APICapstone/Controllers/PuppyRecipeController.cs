@@ -1,5 +1,6 @@
 ﻿using APICapstone.DALModels;
 using APICapstone.Data;
+using APICapstone.Models.ApiModels;
 using APICapstone.Models.PuppyRecipe;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -67,7 +68,7 @@ namespace APICapstone.Controllers
             return View(viewModel);
         }
 
-        public async Task<IActionResult> AddToFavorite(string search, int index) 
+        public async Task<IActionResult> AddToFavorite(string search, int index)
         {
             var response = await _recipePuppyClient.GetRecipes(search);
 
@@ -93,23 +94,12 @@ namespace APICapstone.Controllers
             faveDAL.Id = user.Id;
 
             _applicationDbContext.Favorites.Add(faveDAL);
-            _applicationDbContext.SaveChanges();            
+            _applicationDbContext.SaveChanges();
 
-            
             //CREATE USERs LIST TO SHOW ON THEIR VIEW
             var viewModel = new FavoritesViewModel();
 
-            var favorites = _applicationDbContext.Favorites
-                .Where(favorite => favorite.Id == user.Id).ToList();
-
-            viewModel.Favorites = favorites.Select(faveDAL => new Recipe
-            {
-                ID = faveDAL.FaveId,
-                title = faveDAL.Title,
-                ingredients = faveDAL.Ingredients,
-                href = faveDAL.href
-
-            }).ToList();
+            viewModel.Favorites = MapFavoritesList(user.Id);
 
             return View("Favorites", viewModel);
         }
@@ -126,17 +116,7 @@ namespace APICapstone.Controllers
 
             //new list of tasks to display w/USER ID!!
             var viewModel = new FavoritesViewModel();
-            var favorites = _applicationDbContext.Favorites
-                .Where(favorite => favorite.Id == user.Id).ToList();
-
-            viewModel.Favorites = favorites.Select(faveDAL => new Recipe
-            {
-                ID = faveDAL.FaveId,
-                title = faveDAL.Title,
-                ingredients = faveDAL.Ingredients,
-                href = faveDAL.href
-
-            }).ToList();
+            viewModel.Favorites = MapFavoritesList(user.Id);
 
             return View("Favorites", viewModel);
         }
@@ -157,8 +137,9 @@ namespace APICapstone.Controllers
             //    return View("RecipeNotFound", model);
             //}
 
-
             var viewModel = new RecipeResultsViewModel();
+
+            //viewModel.SearchResults = MapSearchesList(SearchString, response);
 
             viewModel.SearchResults = response.results.
                 Select(
@@ -173,11 +154,49 @@ namespace APICapstone.Controllers
 
             viewModel.SearchKeyword = SearchString;
 
-            
-
-
             return View(viewModel);
         }
+
+        private List<Recipe>  MapFavoritesList(string userID)
+        {
+            List<Recipe> MapToFave = new List<Recipe>();
+
+            var favorites = _applicationDbContext.Favorites
+               .Where(favorite => favorite.Id == userID).ToList();
+
+            MapToFave = favorites.Select(faveDAL => new Recipe
+            {
+                ID = faveDAL.FaveId,
+                title = faveDAL.Title,
+                ingredients = faveDAL.Ingredients,
+                href = faveDAL.href
+
+            }).ToList();
+
+            return MapToFave;
+
+        }
+
+        //private async  Task<List<Recipe>> MapSearchesList(string search, RecipeResponseModel response)
+        //{
+        //    //var response = await _recipePuppyClient.GetRecipes(search);
+
+        //    List<Recipe> searchResults = new List<Recipe>();
+
+        //    searchResults = response.results.
+        //            Select(
+        //            result => new Recipe()
+        //            {
+        //                title = result.title,
+        //                ingredients = result.ingredients,
+        //                thumbnail = result.thumbnail,
+        //                href = result.href
+
+        //            }).ToList();
+
+        //    return searchResults;
+
+        //}
 
 
     }

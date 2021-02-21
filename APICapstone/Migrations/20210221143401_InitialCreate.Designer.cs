@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace APICapstone.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210218022941_InitialCreate")]
+    [Migration("20210221143401_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -34,14 +34,14 @@ namespace APICapstone.Migrations
                     b.Property<string>("Ingredients")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("MyProperty")
-                        .HasColumnType("int");
-
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("href")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("FaveId");
 

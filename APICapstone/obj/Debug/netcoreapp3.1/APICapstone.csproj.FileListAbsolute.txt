@@ -132,6 +132,7 @@ C:\Users\goods\source\repos\APICapstone\APICapstone\bin\Debug\netcoreapp3.1\runt
 C:\Users\goods\source\repos\APICapstone\APICapstone\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\goods\source\repos\APICapstone\APICapstone\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\goods\source\repos\APICapstone\APICapstone\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\goods\source\repos\APICapstone\APICapstone\obj\Debug\netcoreapp3.1\APICapstone.csprojAssemblyReference.cache
 C:\Users\goods\source\repos\APICapstone\APICapstone\obj\Debug\netcoreapp3.1\APICapstone.AssemblyInfoInputs.cache
 C:\Users\goods\source\repos\APICapstone\APICapstone\obj\Debug\netcoreapp3.1\APICapstone.AssemblyInfo.cs
 C:\Users\goods\source\repos\APICapstone\APICapstone\obj\Debug\netcoreapp3.1\APICapstone.csproj.CoreCompileInputs.cache
@@ -149,6 +150,7 @@ C:\Users\goods\source\repos\APICapstone\APICapstone\obj\Debug\netcoreapp3.1\Razo
 C:\Users\goods\source\repos\APICapstone\APICapstone\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index.cshtml.g.cs
 C:\Users\goods\source\repos\APICapstone\APICapstone\obj\Debug\netcoreapp3.1\Razor\Views\Home\Privacy.cshtml.g.cs
 C:\Users\goods\source\repos\APICapstone\APICapstone\obj\Debug\netcoreapp3.1\Razor\Views\PuppyRecipe\Favorites.cshtml.g.cs
+C:\Users\goods\source\repos\APICapstone\APICapstone\obj\Debug\netcoreapp3.1\Razor\Views\PuppyRecipe\RecipeNotFound.cshtml.g.cs
 C:\Users\goods\source\repos\APICapstone\APICapstone\obj\Debug\netcoreapp3.1\Razor\Views\PuppyRecipe\RecipeResults.cshtml.g.cs
 C:\Users\goods\source\repos\APICapstone\APICapstone\obj\Debug\netcoreapp3.1\Razor\Views\PuppyRecipe\RecipeSearch.cshtml.g.cs
 C:\Users\goods\source\repos\APICapstone\APICapstone\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Error.cshtml.g.cs
@@ -164,5 +166,3 @@ C:\Users\goods\source\repos\APICapstone\APICapstone\obj\Debug\netcoreapp3.1\APIC
 C:\Users\goods\source\repos\APICapstone\APICapstone\obj\Debug\netcoreapp3.1\APICapstone.dll
 C:\Users\goods\source\repos\APICapstone\APICapstone\obj\Debug\netcoreapp3.1\APICapstone.pdb
 C:\Users\goods\source\repos\APICapstone\APICapstone\obj\Debug\netcoreapp3.1\APICapstone.genruntimeconfig.cache
-C:\Users\goods\source\repos\APICapstone\APICapstone\obj\Debug\netcoreapp3.1\APICapstone.csprojAssemblyReference.cache
-C:\Users\goods\source\repos\APICapstone\APICapstone\obj\Debug\netcoreapp3.1\Razor\Views\PuppyRecipe\RecipeNotFound.cshtml.g.cs

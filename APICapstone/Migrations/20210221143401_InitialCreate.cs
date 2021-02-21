@@ -160,7 +160,7 @@ namespace APICapstone.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(nullable: true),
                     Ingredients = table.Column<string>(nullable: true),
-                    MyProperty = table.Column<int>(nullable: false),
+                    href = table.Column<string>(nullable: true),
                     Id = table.Column<string>(nullable: true),
                     UserId = table.Column<string>(nullable: true)
                 },
